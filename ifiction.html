@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link href="https://fonts.googleapis.com/css?family=EB+Garamond" rel="stylesheet">
+		<title>
+			Placeholder Title
+		</title>
+		<style type="text/css">
+			
+			body {
+				background-color: black;
+				color: white;
+				font-family: 'EB Garamond', serif;
+
+			}
+			
+			#prompt {
+				text-align: center;
+				margin-top: 5%;
+				max-width: 75%;
+				margin-left: auto;
+				margin-right: auto;
+				font-size: 36px;
+				line-height: 1.5;
+			}
+
+			button {
+				text-align: center;
+				min-width: 50%;
+				display: block;
+				margin-left: auto;
+				margin-right: auto;
+				background-color: black;
+				border: 2px solid white;
+				font-family: 'EB Garamond', serif;
+				color: white;
+				padding: 15px;
+				margin-top: 10px;
+				margin-bottom: 10px;
+				font-size: 24px;
+				cursor: pointer;
+			}
+
+		</style>
+	</head>
+	<body>
+		
+		<p id="prompt"></p>
+
+		<div id="choicesDiv" style="display: none;">
+			<button id="b1"></button>
+			<button id="b2"></button>
+			<button id="b3"></button>
+
+		</div>
+
+		<script type="text/javascript">
+			
+			var prompt = document.getElementById("prompt");
+			
+			var split;
+			var currentPrompt = "";
+			var index = 0;
+
+			var buttons = [document.getElementById("b1"), document.getElementById("b2"), document.getElementById("b3")];
+			var choicesDiv = document.getElementById("choicesDiv");
+
+			function addLetter(fullPrompt, choices, choicesID) {
+				
+				var loop = true;
+				
+				if (index === 0) {
+					currentPrompt = fullPrompt;
+					split = fullPrompt.split("");
+				}
+
+				if (prompt.innerHTML === currentPrompt) {
+					loop = false;
+					createChoices(choices);
+				}
+
+				else {
+					prompt.innerHTML += split[index];
+					index++;
+				}
+
+				if (loop) {
+					window.setTimeout(function() { addLetter("", choices); }, 50);	
+				}
+
+			
+			}
+
+			function createChoices(choices) {
+				choicesDiv.style.display = "block";
+		
+				for (i = 0; i < 3; i++) {
+					buttons[i].innerHTML = choices[i];
+				}
+			}
+
+			addLetter("Placeholder prompt placeholder prompt placeholder prompt placeholder prompt placeholder prompt placeholder prompt", ["Choice 1", "Choice 2", "Choice 3"], ["1a", "1b", "1c"]);
+
+			var promptList = {
+				
+			}
+
+
+
+		</script>
+
+	</body>
+</html>
