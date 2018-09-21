@@ -103,12 +103,13 @@
 
 			function story(sp) {
 				index = 0;
+				var choices = sp.choices;
+				var choicesL = choices.length;
+				removeButtons();
 				prompt.innerHTML = "";
 				addLetter(sp.text);
 				window.setTimeout(function() {
-					var choices = sp.choices;
-					var choicesL = choices.length;
-					removeButtons(4 - choicesL);
+					
 					for (i = 0; i < choicesL; i++) {
 						buttons[i].innerHTML = choices[i][0];
 						buttons[i].id = choices[i][1];
@@ -124,21 +125,22 @@
 				story(storyStates.get(id));
 			}
 
-			function removeButtons(n) {
-				for (i = (4 - n); i < 4; i++) {
+			function removeButtons() {
+				for (i = 0; i < 4; i++) {
 					buttons[i].style.display = "none";
 				}
 			}
 
 
+
 			var storyStates = new Map();
 
-			storyStates.set("1a", new StoryPiece("Lorem ipsum dolor sit amet", [["choice 1", "2a"], ["choice 2", "3a"], ["choice 3", "4a"]]));
-			storyStates.set("2a", new StoryPiece("Lorem ipsum dolor sit amet", [["choice 1", "3a"], ["choice 2", "2a"], ["choice 3", "3a"]]));
-			storyStates.set("3a", new StoryPiece("Lorem ipsum dolor sit amet", [["choice 1", "3a"], ["choice 2", "2a"], ["choice 3", "3a"]]));
-			storyStates.set("4a", new StoryPiece("Lorem ipsum dolor sit amet", [["choice 1", "3a"], ["choice 2", "2a"], ["choice 3", "3a"]]));
-	
-			story(storyStates.get("1a"));
+			storyStates.set("0", new StoryPiece("Lorem ipsum dolor sit amet", [["choice 1", "1a"], ["choice 2", "1b"], ["choice 3", "1c"]]));
+			storyStates.set("1a", new StoryPiece("Choice 1", [["choice 1", "2aa"], ["choice 2", "2ab"], ["choice 3", "2ac"]]));
+			storyStates.set("1b", new StoryPiece("Choice 2", [["choice 1", "2ba"], ["choice 2", "2bb"], ["choice 3", "2bc"]]));
+			storyStates.set("1c", new StoryPiece("Cohice 3", [["choice 1", "2ca"], ["choice 2", "2cb"], ["choice 3", "2cc"]]));
+			storyStates.set("2aa", new StoryPiece("Choice 1.1", [["only choice", "asdfa"]]));
+			story(storyStates.get("0"));
 
 
 			function StoryPiece(text, choices, func) {
