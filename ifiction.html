@@ -135,11 +135,13 @@
 
 			var storyStates = new Map();
 
-			storyStates.set("0", new StoryPiece("Lorem ipsum dolor sit amet", [["choice 1", "1a"], ["choice 2", "1b"], ["choice 3", "1c"]]));
-			storyStates.set("1a", new StoryPiece("Choice 1", [["choice 1", "2aa"], ["choice 2", "2ab"], ["choice 3", "2ac"]]));
-			storyStates.set("1b", new StoryPiece("Choice 2", [["choice 1", "2ba"], ["choice 2", "2bb"], ["choice 3", "2bc"]]));
-			storyStates.set("1c", new StoryPiece("Cohice 3", [["choice 1", "2ca"], ["choice 2", "2cb"], ["choice 3", "2cc"]]));
-			storyStates.set("2aa", new StoryPiece("Choice 1.1", [["only choice", "asdfa"]]));
+			// End element of arrays in 2nd parameneter: story progression (i.e. 1.1 means player chose choice 1 then choice 1. 3.2 means player chose choice 3 then choice 2)
+
+			storyStates.set("0", new StoryPiece("Lorem ipsum dolor sit amet", [["choice 1", "1"], ["choice 2", "2"], ["choice 3", "3"]]));
+			storyStates.set("1", new StoryPiece("Choice 1 Prompt", [["choice 1", "1.1"], ["choice 2", "1.2"], ["choice 3", "1.3"]]));
+			storyStates.set("2", new StoryPiece("Choice 2 Prompt", [["choice 1", "2.1"], ["choice 2", "2.2"], ["choice 3", "2.3"]]));
+			storyStates.set("3", new StoryPiece("Choice 3 Prompt", [["choice 1", "3.1"], ["choice 2", "3.2"], ["choice 3", "3.3"]]));
+			storyStates.set("1.1", new StoryPiece("Choice 1, Chocie 1 prompt", [["choice 1", "1.1.1"], ["choice 2", "1.1.2"]]));
 			story(storyStates.get("0"));
 
 
